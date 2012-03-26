@@ -1,4 +1,4 @@
-var monodom = DOMAIN([[3,5])([3])
+var monodom = DOMAIN([[3,5]])([3])
 DRAW(monodom)
 
 var bidom = DOMAIN([[3,5],[4,5]])([3,3])
