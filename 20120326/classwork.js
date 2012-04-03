@@ -64,4 +64,67 @@ var mappedCir = MAP(mappingCircle)(domCircle);
 DRAW(mappedCir);
 }
 
+//cilindro
+
+var drawCilynder = function(r,h,n,m, color){
+	var domCil = DOMAIN([[0,2*Math.PI],[0,h]])([n,m]);
+	var mappingCil = function(array){
+		var u = array[0];
+		var v = array[1];
+
+		var x = Math.cos(u);
+		var y = Math.sin(u);
+		return [r*x, r*y, v];
+	};
+	var mappedCil = MAP(mappingCil)(domCil);
+	COLOR(color)(mappedCil);
+
+	DRAW(mappedCil);
+}
+
+//sphere
+
+var drawSphere = function(r,n,m, color){
+	var domSphere = DOMAIN([[0,Math.PI],[0,2*Math.PI]])([n, m]);
+	var mappingSphere = function(array){
+		var u = array[0] - PI/2;
+		var v = array[1];
+
+		var z = r * SIN(u);
+		var x = r * COS(u) * SIN(v);
+		var y = r * COS(u) * COS(v);
+
+		return [x, y, z];
+	}
+	var mappedSphere = MAP(mappingSphere)(domSphere);
+	COLOR(color)(mappedSphere);
+
+	DRAW(mappedSphere);
+}
+
+//Cone
+var drawCone = function(r,h,n,m,color){
+	var domCone = DOMAIN([[0,2*PI],[0,h]])([n,m]);
+	var mappingCone = function(array){
+		var u = array[0];
+		var v = array[1];
+
+		var scale = (h - v)/h;
+		var x = r * scale * SIN(u);
+		var y = r * scale * COS(u);
+		var z = v;
+	
+		return [x, y, z];
+	}
+	var mappedCone = MAP(mappingCone)(domCone);
+	COLOR(color)(mappedCone);
+
+	DRAW(mappedCone);
+}
+
+
+
+z = raggio * sen(alpha);
+y = raggio * cos(alpha)*sin(beta);
+x = raggio * cos(alpha)*cos(beta);
 
