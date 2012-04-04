@@ -34,7 +34,7 @@ DRAW(horizFirstGridStruct);
 
 	//second grid
 	var secondGridVert = [];
-	for (var i = 21; i < 40; i++) {
+	for (var i = 21; i < 37; i++) {
 		var point1 = [i, 0];
 		var point2 = [i, 17];
 		secondGridVert.push(POLYLINE([point1, point2]));
@@ -45,11 +45,36 @@ DRAW(horizFirstGridStruct);
 	var secondGridHoriz = [];
 	for (var i = 0; i < 18; i++) {
 		var point1 = [21, i];
-		var point2 = [39, i];
+		var point2 = [36, i];
 		secondGridHoriz.push(POLYLINE([point1, point2]));
 	};
 	var secondGridHorizStruct = STRUCT(secondGridHoriz);
 	DRAW(secondGridHorizStruct);
+
+//scale
+var scale = [];
+	for (var i = 36.3; i < 39; i+=0.3) {
+		var point1 = [i, 1];
+		var point2 = [i, 4];
+		scale.push(POLYLINE([point1, point2]));
+	};
+
+	for (var i = 37; i < 40; i++) {
+		var point1 = [i, 4];
+		var point2 = [i, 17];
+		scale.push(POLYLINE([point1, point2]));
+	};
+	for (var i = 4; i < 18; i++) {
+		var point1 = [36, i];
+		var point2 = [39, i];
+		scale.push(POLYLINE([point1, point2]));
+	};
+	scale.push(POLYLINE([[36, 0], [39, 0], [39,1]]));
+	scale.push(POLYLINE([[37, 0], [37, 1]]));
+	scale.push(POLYLINE([[38, 0], [38 ,1]]));
+	scale.push(POLYLINE([[36, 1], [39 ,1]]));
+	DRAW(STRUCT(scale));
+
 
 	//third grid
 	
