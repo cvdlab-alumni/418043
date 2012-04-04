@@ -78,7 +78,7 @@ walls.push(SIMPLEX_GRID([[-41.4, 9.8],[-4.8, 0.2],[-hBase, hWall]]));
 walls.push(SIMPLEX_GRID([[-1,7],[-0.8,0.2],[-hBase, hWall]]));
 
 var wallStruct = STRUCT(walls);
-COLOR([215/255,201/255,177/250])(wallStruct);
+COLOR([194/255,178/255,128/250])(wallStruct);
 return wallStruct;
 }
 
