@@ -7,12 +7,13 @@ var floor = [];
 floor.push(SIMPLEX_GRID([[39], [1], [hBase]]));
 floor.push(SIMPLEX_GRID([[-21, 15], [-1, 16], [hBase]]))
 floor.push(SIMPLEX_GRID([[-0.8, 8.2],[-17,5.2],[hBase]]));
-floor.push(SIMPLEX_GRID([[-0.8,20],[-10, 7],[hBase]]));
+floor.push(SIMPLEX_GRID([[-1,20],[-10, 7],[hBase]]));
 floor.push(SIMPLEX_GRID([[-36,11],[-4, 12.2],[hBase]]));
 floor.push(SIMPLEX_GRID([[-47,4],[-4, 1],[hBase]]));
 floor.push(SIMPLEX_GRID([[-51, 1],[-4, 2],[hBase]]));
 floor.push(SIMPLEX_GRID([[-0.8, 20.2],[-1, 9],[hBase - 0.2]]));
 floor.push(SIMPLEX_GRID([[-47, 4.2],[-5, 11.2],[hBase - 0.2]]));
+floor.push(SIMPLEX_GRID([[-0.8, 0.2],[-2, 8],[3]]));
 var floorStruct = STRUCT(floor);
 DRAW(floorStruct);
 
@@ -27,6 +28,7 @@ walls.push(SIMPLEX_GRID([[-37.8, 13.4],[-16, 0.2],[-hBase, hWall]]));
 walls.push(SIMPLEX_GRID([[-9, 0.2],[-16.8, 5.4],[-hBase, hWall]]));
 walls.push(SIMPLEX_GRID([[-51, 0.2],[-5, 11],[-hBase, hWall]]));
 walls.push(SIMPLEX_GRID([[-41.4, 9.8],[-4.8, 0.2],[-hBase, hWall]]));
+walls.push(SIMPLEX_GRID([[-1,7],[-0.8,0.2],[-hBase, hWall]]));
 
 var wallStruct = STRUCT(walls);
 DRAW(wallStruct);
@@ -96,7 +98,7 @@ var gambe = [];
 for (var i = 0; i < 8; i++) {
 	gambe.push(T([0])([7.9+i*1.8])(gamba));
 }
-var bench = STRUCT(gambe);
+var bench = STRUCT([STRUCT(gambe),sedile]);
 DRAW(bench);
 
 }
