@@ -156,7 +156,7 @@ return columnsStruct;
 }
 
 !(function(exports){
-	var pavillion = STRUCT([reefs(), columns(), floors(), minorWalls(), majorWalls(), glasses(), bench(), pools()]);
+	var pavillion = STRUCT([steps(),reefs(), columns(), floors(), minorWalls(), majorWalls(), glasses(), bench(), pools()]);
 	exports.pavillion = pavillion;
 	return pavillion;
 }(this));

@@ -148,8 +148,8 @@ var hBase = 2;
 var hWall = 6;
 var hReef = 0.7;
 var hMinorWall = hWall;
-	var tableLegs = SIMPLEX_GRID([[0.01,-1,0.01],[0.01,-2,0.01],[-hBase, 0.5]]);
-var table = SIMPLEX_GRID([[1.02],[2.02],[-hBase - 0.5,0.1]]);
+	var tableLegs = SIMPLEX_GRID([[0.02,-1,0.02],[0.02,-2,0.02],[-hBase, 0.5]]);
+var table = SIMPLEX_GRID([[1.04],[2.04],[-hBase - 0.5,0.1]]);
 var tableStruct = STRUCT([tableLegs, table]);
 
 //tables
@@ -182,7 +182,7 @@ return columnsStruct;
 }
 
 !(function(exports){
-	var pavillion = STRUCT([reefs(), columns(), tables(), floors(), minorWalls(), majorWalls(), glasses(), bench(), pools()]);
+	var pavillion = STRUCT([steps(), reefs(), columns(), tables(), floors(), minorWalls(), majorWalls(), glasses(), bench(), pools()]);
 		exports.pavillion = pavillion;
 }(this));
 
