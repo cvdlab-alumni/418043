@@ -1,4 +1,5 @@
-var drawPavilion = function(){
+
+var floors = function(){
 var hBase = 2;
 var hWall = 6;
 var hReef = 0.7;
@@ -19,8 +20,47 @@ floor.push(SIMPLEX_GRID([[-47, 4.2],[-16, 0.2],[hBase]]));
 floor.push(SIMPLEX_GRID([[-51, 0.2],[-6, 10],[hBase]]));
 floor.push(SIMPLEX_GRID([[-36, 3],[-16, 1],[hBase]]));
 var floorStruct = STRUCT(floor);
-DRAW(floorStruct);
+return floorStruct;
+}
 
+var glasses = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
+	var glasses = [];
+glasses.push(SIMPLEX_GRID([[-30,11.4],[-4.95, 0.05],[-hBase, hMinorWall]]));
+glasses.push(SIMPLEX_GRID([[-42.15,0.05],[-5, 6.3],[-hBase, hMinorWall]]));
+glasses.push(SIMPLEX_GRID([[-30,10],[-13.6, 0.05],[-hBase, hMinorWall]]));
+glasses.push(SIMPLEX_GRID([[-30.95,0.05],[-7.5, 6.1],[-hBase, hMinorWall]]));
+glasses.push(SIMPLEX_GRID([[-31.95,0.05],[-7.5, 6.1],[-hBase, hMinorWall]]));
+glasses.push(SIMPLEX_GRID([[-44.7,0.05],[-6.9, 7.2],[-hBase, hMinorWall]]));
+
+var glassesStruct = STRUCT(glasses);
+return glassesStruct;
+}
+
+var steps = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
+	var steps = [];
+var h = 2;
+for (var i = 0; i < 3; i+=3/8) {
+steps.push(SIMPLEX_GRID([[- (36 + i), 3/8],[-1, 3],[h]]));
+h-=2/8
+};
+
+var stepsStruct = STRUCT(steps);
+return stepsStruct;
+}
+
+var majorWalls = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
 var walls = [];
 walls.push(SIMPLEX_GRID([[-7.6, 19],[-15, 0.2],[-hBase, hWall]]));
 walls.push(SIMPLEX_GRID([[-25.2, 8],[-7.3, 0.2],[-hBase, hWall]]));
@@ -35,7 +75,14 @@ walls.push(SIMPLEX_GRID([[-41.4, 9.8],[-4.8, 0.2],[-hBase, hWall]]));
 walls.push(SIMPLEX_GRID([[-1,7],[-0.8,0.2],[-hBase, hWall]]));
 
 var wallStruct = STRUCT(walls);
-DRAW(wallStruct);
+return wallStruct;
+}
+
+var minorWalls = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
 
 var minorWalls = [];
 minorWalls.push(SIMPLEX_GRID([[-1, 6],[-16.95, 0.1],[-hBase, hMinorWall]]));
@@ -47,32 +94,54 @@ minorWalls.push(SIMPLEX_GRID([[-7, 2],[-20.8, 0.1],[-hBase, hMinorWall]]));
 //minorWalls.push(SIMPLEX_GRID([[-6.95, 0.1],[-20.9, 1.1],[-hBase, hMinorWall]]));
 
 var minorWallStruct = STRUCT(minorWalls);
-DRAW(minorWallStruct);
+return minorWallStruct;
+}
 
-var glasses = [];
-glasses.push(SIMPLEX_GRID([[-30,11.4],[-4.95, 0.05],[-hBase, hMinorWall]]));
-glasses.push(SIMPLEX_GRID([[-42.15,0.05],[-5, 6.3],[-hBase, hMinorWall]]));
-glasses.push(SIMPLEX_GRID([[-30,10],[-13.6, 0.05],[-hBase, hMinorWall]]));
-glasses.push(SIMPLEX_GRID([[-30.95,0.05],[-7.5, 6.1],[-hBase, hMinorWall]]));
-glasses.push(SIMPLEX_GRID([[-31.95,0.05],[-7.5, 6.1],[-hBase, hMinorWall]]));
-glasses.push(SIMPLEX_GRID([[-44.7,0.05],[-6.9, 7.2],[-hBase, hMinorWall]]));
+var reefs = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
+	var reefs = [];
+reefs.push(SIMPLEX_GRID([[-0.3, 8.8 + 0.7],[-13.2, 9.8],[-hBase - hWall, hReef]]));
+reefs.push(SIMPLEX_GRID([[-24,23],[-4, 13],[-hBase - hWall, hReef]]));
+var reefStruct = STRUCT(reefs);
+return reefStruct;
+}
 
-var glassesStruct = STRUCT(glasses);
-DRAW(glassesStruct);
+var pools = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
+	var pools = [];
+pools.push(SIMPLEX_GRID([[-1, 20],[-1, 9],[-1.8, 0.2]]));
+pools.push(SIMPLEX_GRID([[-47, 4],[-5, 11],[-1.8, 0.2]]));
+var poolsStruct = STRUCT(pools);
+return poolsStruct;
+}
 
-// scalini
-var steps = [];
-var h = 2;
-for (var i = 0; i < 3; i+=3/8) {
-steps.push(SIMPLEX_GRID([[- (36 + i), 3/8],[-1, 3],[h]]));
-h-=2/8
-};
+var bench = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
+	var sedile = SIMPLEX_GRID([[-7.8, 15.3],[-14.1, 0.6],[-hBase-0.4, 0.3]]);
+var gamba = SIMPLEX_GRID([[0.3],[-14.1, 0.3],[-hBase, 0.4]]);
+var gambe = [];
+for (var i = 0; i < 8; i++) {
+gambe.push(T([0])([7.9+i*2.1])(gamba));
+}
+var bench = STRUCT([STRUCT(gambe),sedile]);
+return bench;
+}
 
-var stepsStruct = STRUCT(steps);
-DRAW(stepsStruct);
-
-//columns
-var column = SIMPLEX_GRID([[0.15],[0.15],[-hBase, hWall]]);
+var columns = function(){
+var hBase = 2;
+var hWall = 6;
+var hReef = 0.7;
+var hMinorWall = hWall;
+	var column = SIMPLEX_GRID([[0.15],[0.15],[-hBase, hWall]]);
 var columns = [];
 columns.push(T([0,1])([26, 14])(column));
 columns.push(T([0,1])([26, 7])(column));
@@ -83,26 +152,14 @@ columns.push(T([0,1])([38.5, 7])(column));
 columns.push(T([0,1])([45, 14])(column));
 columns.push(T([0,1])([45, 7])(column));
 var columnsStruct = STRUCT(columns);
-DRAW(columnsStruct);
-
-
-
-// reefs
-var reefs = [];
-reefs.push(SIMPLEX_GRID([[-0.3, 8.8 + 0.7],[-13.2, 9.8],[-hBase - hWall, hReef]]));
-reefs.push(SIMPLEX_GRID([[-24,23],[-4, 13],[-hBase - hWall, hReef]]));
-var reefStruct = STRUCT(reefs);
-DRAW(reefStruct);
-
-// bench
-
-var sedile = SIMPLEX_GRID([[-7.8, 15.3],[-14.1, 0.6],[-hBase-0.4, 0.3]]);
-var gamba = SIMPLEX_GRID([[0.3],[-14.1, 0.3],[-hBase, 0.4]]);
-var gambe = [];
-for (var i = 0; i < 8; i++) {
-gambe.push(T([0])([7.9+i*2.1])(gamba));
+return columnsStruct;
 }
-var bench = STRUCT([STRUCT(gambe),sedile]);
-DRAW(bench);
 
-}
+!(function(exports){
+	var pavillion = STRUCT([reefs(), columns(), floors(), minorWalls(), majorWalls(), glasses(), bench(), pools()]);
+	exports.pavillion = pavillion;
+	return pavillion;
+}(this));
+
+DRAW(pavillion);
+
