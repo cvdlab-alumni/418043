@@ -149,7 +149,7 @@ var hWall = 6;
 var hReef = 0.7;
 var hMinorWall = hWall;
 	var tableLegs = SIMPLEX_GRID([[0.01,-1,0.01],[0.01,-2,0.01],[-hBase, 0.5]]);
-var table = SIMPLEX_GRID([[1.02],[2.2],[-hBase - 0.5,0.1]]);
+var table = SIMPLEX_GRID([[1.02],[2.02],[-hBase - 0.5,0.1]]);
 var tableStruct = STRUCT([tableLegs, table]);
 
 //tables
@@ -157,7 +157,7 @@ var tables = [];
 tables.push(T([0,1])([22,5])(tableStruct));
 tables.push(T([0,1])([40,8])(tableStruct));
 var tablesStruct = STRUCT(tables);
-COLOR();
+COLOR([112/255, 66/255, 20/255])(tablesStruct);
 return tablesStruct;
 }
 
