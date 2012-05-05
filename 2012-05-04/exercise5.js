@@ -1,5 +1,17 @@
+var pista = CUBOID([24.5, 0.3, 10]);
+var light = T([1])([0.3])(CUBOID([0.5, 0.05,0.5]));
+var light = COLOR([1,0,0])(light);
 
-!function(exports){
+var t = T([0])([1]);
+var lights = STRUCT([light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light,t,light]);
+var lights2 = T([2])([4.5])(lights);
+var lights3 = T([2])([9.5])(lights);
+
+var completeLights = STRUCT([lights, lights2, lights3]);
+var grass = COLOR([209/255, 226/255, 49/255])(T([0,1,2])([-10, -0.3, -5])(CUBOID([40, 0.3, 20])));
+var airStrip = STRUCT([pista,completeLights, grass]);
+DRAW(S([0,2])([6,5])(airStrip));
+
 var wing2dDomain = INTERVALS(1)(30);
 //topWing
 var wingP1 = [[4.5, 0, 0], [4.5, 0.5, 0],[4, 0.7, 0],[2, 1.2, 0], [-1,0,0],[4.5, 0,0]];
@@ -49,7 +61,9 @@ var completeBar = STRUCT([bar, bar2, barLateral]);
 var firstBar = T([0,1,2])([3.2,-2.35,8])(completeBar);
 var secondBar = T([0,1])([0.8, -3])(firstBar);
 
-var completeBars = COLOR([67/255, 39/255, 15/255])(STRUCT([firstBar, secondBar]));
+var bar21 = T([2])([-7])(firstBar);
+
+var completeBars = COLOR([67/255, 39/255, 15/255])(STRUCT([firstBar, secondBar, bar21]));
 
 //extreme wing
 
@@ -71,82 +85,31 @@ var exWingComplete = COLOR([90/255, 78/255, 67/255])(STRUCT([exWingImage, exWing
 
 //wing2
 var exWingComplete2 = T([2])([-20])(exWingComplete);
-var completeBars2 = T([2])([-16])(completeBars);
+var c1 = T([2])([-16])(firstBar);
+var c2 = T([2])([-16])(secondBar);
+var c3 = T([2])([-2])(bar21);
+var completeBars2 = COLOR([67/255, 39/255, 15/255])(STRUCT([c1,c2,c3]));
 var wTop2 = T([2])([-10])(wingTopImage);
 var wMiddle2 = T([2])([-10])(wingMiddleImage);
 var wingBottom2 = T([2])([-11.5])(wingBottomImage);
 var wings2 = COLOR([90/255, 78/255, 67/255])(STRUCT([wingBottom2, wTop2, wMiddle2]));
 //
 
-var completeWing = STRUCT([wings, completeBars, exWingComplete, exWingComplete2, completeBars2, wings2]);
+var filo = POLYLINE([[4.3, 0, 3],[4.5, -5.5,7]]);
+var filo2 = POLYLINE([[4.3, 0, 7],[4.5, -5.5,3]]);
+var filo3 = T([2])([-10])(filo);
+var filo4 = T([2])([-10])(filo2);
+var completeWing = STRUCT([wings, completeBars, exWingComplete, exWingComplete2, completeBars2, wings2,filo, filo2,filo3,filo4]);
 
-DRAW(completeWing);
+
+
+var completeBars = COLOR([67/255, 39/255, 15/255])(STRUCT([firstBar, secondBar]));
 
 
 
 /////////fusoliera
 //parte cdentrale
 
-var domain=DOMAIN([[0,1],[0,1]])([30,30]);
-var fusP1 = [[0,0,0],[-1.4, 1.5,0],[0,3,0]];
-
-var l = 6;
-
-var fusP2 = [[0,0,0],[-0.6, 1.5,0],[0,3,0]].map(function(p){return [p[0], p[1], p[2]+l/6]});
-var fusP3 = [[0,0,0],[-0.4, 1.5,0],[0,3,0]].map(function(p){return [p[0], p[1], p[2]+ 2 * l/6]})
-var fusP4 = [[0,0,0],[-0.2, 1.5,0],[0,3,0]].map(function(p){return [p[0], p[1], p[2]+ 3 * l/6]})
-var fusP5 = [[0,0,0],[-0.1, 1.5,0],[0,3,0]].map(function(p){return [p[0], p[1], p[2]+ 4 * l/6]})
-var fusP5 = [[0,0,0],[0, 1.5,0],[0,3,0]].map(function(p){return [p[0], p[1], p[2]+ 6 * l/6]})
-
-
-
-var fusSur0 = BEZIER(S0)(fusP1);
-var fusSur1 = BEZIER(S0)(fusP2);
-var fusSur2 = BEZIER(S0)(fusP3);
-var fusSur3 = BEZIER(S0)(fusP4);
-var fusSur4 = BEZIER(S0)(fusP5);
-var fusSur5 = BEZIER(S0)(fusP5);
-
-//DISEGNARE BORDI
-//var curva = STRUCT(CONS(AA(MAP)([fusSur0, fusSur1, fusSur2, fusSur3, fusSur4]))(INTERVALS(1)(30)));
-//DRAW(curva);
-
-var leftSurFus = BEZIER(S1)([fusSur0, fusSur1, fusSur2, fusSur3, fusSur4]);
-var leftSurFusImage = MAP(leftSurFus)(domain);
-
-var l2 = T([0,1])([-3,-3])(leftSurFusImage);
-var rightSurFusImage = R([0,1])([PI])(l2);
-
-
-var fusUpP1 = [[0,3,0],[1.5, 3.6,0],[3,3,0]];
-
-var fusUpP2 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + l/5];});
-var fusUpP3 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + 2 * l/5];});
-var fusUpP4 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + 3 * l/5];});
-var fusUpP5 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + 5 * l/5];});
-
-var fusUpSur0 = BEZIER(S0)(fusUpP1);
-var fusUpSur1 = BEZIER(S0)(fusUpP2);
-var fusUpSur2 = BEZIER(S0)(fusUpP3);
-var fusUpSur3 = BEZIER(S0)(fusUpP4);
-var fusUpSur4 = BEZIER(S0)(fusUpP5);
-
-//DISEGNARE BORDI
-//var curva = STRUCT(CONS(AA(MAP)([fusSur0, fusSur1, fusSur2, fusSur3, fusSur4]))(INTERVALS(1)(30)));
-//DRAW(curva);
-
-var upSurFus = BEZIER(S1)([fusUpSur0, fusUpSur1, fusUpSur2, fusUpSur3, fusUpSur4]);
-var upSurFusImage = MAP(upSurFus)(domain);
-
-var ds1 = T([0,1])([-3,-3])(upSurFusImage);
-var downSurFusImage = R([0,1])([PI])(ds1);
-var centralFus = STRUCT([downSurFusImage, upSurFusImage, leftSurFusImage, rightSurFusImage]);
-var centralFusT = T([0,1,2])([-1.5,-6.3,1])(centralFus);
-var centralFusR = R([0,2])([PI/2])(centralFusT);
-
-
-//front
-//ONE
 var domain=DOMAIN([[0,1],[0,1]])([30,30]);
 var fusP1 = [[0,0,0],[-0.7, 1.5,0],[0,3,0]];
 
@@ -328,7 +291,21 @@ var completeHelicT = T([0,1,2])([-0.1,-4.8,0.75])(completeHelic);
 
 var frontR= R([0,2])([-PI/2])(front);
 var frontT = T([0,1,2])([1,-6.7,-3.35])(frontR);
-var fuselage = STRUCT([completeHelicT, leftFus2T, frontT, centralFusR]);
+
+//ruote
+var routa = TORUS_SOLID([0.6, 0.9])([10,20,8]);
+var ruotaC = COLOR([0,0,0])(routa);
+var ruota2 = T([2])([10.5])(ruotaC);
+
+
+var bar = CUBOID([0.3,0.3,10.5]);
+var bar2 = T([2])([3.5])(CUBOID([0.3, 7,0.3]));
+var bar3 = T([2])([3.5])(bar2);
+var ruote = STRUCT([ruota2, ruotaC,bar,bar2, bar3]);
+var sRuote = S([0,1,2])([0.3, 0.3, 0.3])(ruote);
+var tRuote = T([0,1,2])([5, -8, -1.5])(sRuote);
+
+var fuselage = STRUCT([completeHelicT, COLOR([70/255, 89/255, 69/255])(leftFus2T), frontT, COLOR([70/255, 89/255, 69/255])(centralFusR), tRuote]);
 
 //stabil
 var domain = DOMAIN([[0,1],[0,1],[0,1]])([30,1,1]);
@@ -396,7 +373,5 @@ var stabilLaterals = COLOR([27/255,47/255,67/255])(STRUCT([finalLaterals, m]));
 var stabilLateralsT = T([0,1,2])([15,-4.8,-0.03])(stabilLaterals);
 
 var aeroplane = STRUCT([completeWing, stabilLateralsT, fuselage]);
-
-exports.aeroplane = aeroplane;}(this);
-
-DRAW(aeroplane);
+var aeroplanet = T([0,1,2])([58,14,23])(aeroplane);
+DRAW(aeroplanet);

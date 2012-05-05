@@ -181,7 +181,22 @@ var completeHelicT = T([0,1,2])([-0.1,-4.8,0.75])(completeHelic);
 
 var frontR= R([0,2])([-PI/2])(front);
 var frontT = T([0,1,2])([1,-6.7,-3.35])(frontR);
-var fuselage = STRUCT([completeHelicT, leftFus2T, frontT, centralFusR]);
+
+//ruote
+var routa = TORUS_SOLID([0.6, 0.9])([10,20,8]);
+var ruotaC = COLOR([0,0,0])(routa);
+var ruota2 = T([2])([10.5])(ruotaC);
+
+
+var bar = CUBOID([0.3,0.3,10.5]);
+var bar2 = T([2])([3.5])(CUBOID([0.3, 7,0.3]));
+var bar3 = T([2])([3.5])(bar2);
+var ruote = STRUCT([ruota2, ruotaC,bar,bar2, bar3]);
+var sRuote = S([0,1,2])([0.3, 0.3, 0.3])(ruote);
+var tRuote = T([0,1,2])([5, -8, -1.5])(sRuote);
+var fuselage = STRUCT([completeHelicT, leftFus2T, frontT, centralFusR, tRuote]);
+
+
 
 exports.fuselage = fuselage;
 return fuselage;

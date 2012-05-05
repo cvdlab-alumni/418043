@@ -18,6 +18,10 @@ var wing3dDomain = DOMAIN([[0,1],[0,1]])([30,30]);
 var wingTop = BEZIER(S1)([cpt0,cpt1,cpt2,cpt3,cpt4]);
 var wingTopImage = MAP(wingTop)(wing3dDomain);
 
+var filo = POLYLINE([[4.3, 0, 3],[4.5, -5.5,7]]);
+var filo2 = POLYLINE([[4.3, 0, 7],[4.5, -5.5,3]])
+DRAW(filo);
+DRAW(filo2);
 //middleWing
 var wingMiddleImage = T([0,1])([1,-3])(wingTopImage);
 
@@ -40,14 +44,17 @@ var barLateral = EXTRUDE([0.1])(pol);
 var bar2 = T([2])([0.1])(bar);
 
 var completeBar = STRUCT([bar, bar2, barLateral]);
+
 //DRAW(completeBar);
 
 //bars
 
 var firstBar = T([0,1,2])([3.2,-2.35,8])(completeBar);
+var bar21 = T([2])([-7])(firstBar);
+
 var secondBar = T([0,1])([0.8, -3])(firstBar);
 
-var completeBars = COLOR([67/255, 39/255, 15/255])(STRUCT([firstBar, secondBar]));
+var completeBars = COLOR([67/255, 39/255, 15/255])(STRUCT([firstBar, secondBar, bar21]));
 
 //extreme wing
 
