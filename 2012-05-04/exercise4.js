@@ -21,7 +21,7 @@ var wingTop = BEZIER(S1)([cpt0,cpt1,cpt2,cpt3,cpt4]);
 var wingTopImage = MAP(wingTop)(wing3dDomain);
 
 //middleWing
-var wingMiddleImage = T([0,1])([1,-3])(wingTopImage);
+var wingMiddleImage = T([0,1])([1,-2.8])(wingTopImage);
 
 //bottomWing
 
@@ -130,7 +130,7 @@ var l2 = T([0,1])([-3,-3])(leftSurFusImage);
 var rightSurFusImage = R([0,1])([PI])(l2);
 
 
-var fusUpP1 = [[0,3,0],[1.5, 3.3,0],[3,3,0]];
+var fusUpP1 = [[0,3,0],[1.5, 4,0],[3,3,0]];
 
 var fusUpP2 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + l/5];});
 var fusUpP3 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + 2 * l/5];});
@@ -220,7 +220,7 @@ var lRightSurFusImage = MAP(lRightSurFus)(domain);
 
 
 //three
-var fusTopP1 = [[0,3,0],[1.5, 3.3,0],[3,3,0]];
+var fusTopP1 = [[0,3,0],[1.5, 4,0],[3,3,0]];
 var fusTopP2 = [[1.4,3,lLeft],[1.5, 3.3,lLeft],[1.6,3,lLeft]];
 
 var fusTopSur0 = BEZIER(S0)(fusTopP1);
@@ -231,7 +231,7 @@ var lTopSurFus = BEZIER(S1)([fusTopSur0, fusTopSur1]);
 var lTopSurFusImage = MAP(lTopSurFus)(domain);
 
 //four
-var fusBotP1 = [[0,0,0],[1.5, -0.3, 0],[3,0,0]];
+var fusBotP1 = [[0,0,0],[1.5, -1, 0],[3,0,0]];
 var fusBotP2 = [[1.4,2,lLeft],[1.5, 1.7,lLeft],[1.6,2,lLeft]];
 
 var fusBotSur0 = BEZIER(S0)(fusBotP1);

@@ -7,9 +7,22 @@ var lights = STRUCT([light,t,light,t,light,t,light,t,light,t,light,t,light,t,lig
 var lights2 = T([2])([4.5])(lights);
 var lights3 = T([2])([9.5])(lights);
 
-var completeLights = STRUCT([lights, lights2, lights3]);
+
 var grass = COLOR([209/255, 226/255, 49/255])(T([0,1,2])([-10, -0.3, -5])(CUBOID([40, 0.3, 20])));
-var airStrip = STRUCT([pista,completeLights, grass]);
+
+var left = T([0,2])([-8,-2])(CUBOID([8,0.3,14]));
+
+var t = T([0])([-1.07]);
+var l = T([0,2])([-0.5,-0.5])(light);
+var l3 = T([0,2])([-0.5,-2])(light);
+var ll = STRUCT([t,l3,t,l3,t,l3,t,l3,t,l3,t,l3,t,l3]);
+
+
+var ll2 = T([2])([13.5])(ll);
+var ll4 = T([2])([12])(l);
+var ll5 = T([2])([12])(l3);
+var completeLights = STRUCT([lights, lights2, lights3,l,l3,ll,ll2,ll4,ll5]);
+var airStrip = STRUCT([pista,completeLights, grass, left]);
 DRAW(S([0,2])([6,5])(airStrip));
 
 var wing2dDomain = INTERVALS(1)(30);
@@ -33,7 +46,7 @@ var wingTop = BEZIER(S1)([cpt0,cpt1,cpt2,cpt3,cpt4]);
 var wingTopImage = MAP(wingTop)(wing3dDomain);
 
 //middleWing
-var wingMiddleImage = T([0,1])([1,-3])(wingTopImage);
+var wingMiddleImage = T([0,1])([1,-2.8])(wingTopImage);
 
 //bottomWing
 
@@ -141,7 +154,7 @@ var l2 = T([0,1])([-3,-3])(leftSurFusImage);
 var rightSurFusImage = R([0,1])([PI])(l2);
 
 
-var fusUpP1 = [[0,3,0],[1.5, 3.3,0],[3,3,0]];
+var fusUpP1 = [[0,3,0],[1.5, 4,0],[3,3,0]];
 
 var fusUpP2 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + l/5];});
 var fusUpP3 = fusUpP1.map(function(p){ return [p[0], p[1], p[2] + 2 * l/5];});
@@ -231,7 +244,7 @@ var lRightSurFusImage = MAP(lRightSurFus)(domain);
 
 
 //three
-var fusTopP1 = [[0,3,0],[1.5, 3.3,0],[3,3,0]];
+var fusTopP1 = [[0,3,0],[1.5, 4,0],[3,3,0]];
 var fusTopP2 = [[1.4,3,lLeft],[1.5, 3.3,lLeft],[1.6,3,lLeft]];
 
 var fusTopSur0 = BEZIER(S0)(fusTopP1);
@@ -242,7 +255,7 @@ var lTopSurFus = BEZIER(S1)([fusTopSur0, fusTopSur1]);
 var lTopSurFusImage = MAP(lTopSurFus)(domain);
 
 //four
-var fusBotP1 = [[0,0,0],[1.5, -0.3, 0],[3,0,0]];
+var fusBotP1 = [[0,0,0],[1.5, -1, 0],[3,0,0]];
 var fusBotP2 = [[1.4,2,lLeft],[1.5, 1.7,lLeft],[1.6,2,lLeft]];
 
 var fusBotSur0 = BEZIER(S0)(fusBotP1);
