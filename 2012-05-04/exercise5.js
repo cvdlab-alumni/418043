@@ -91,7 +91,7 @@ var exWing = BEZIER(S1)([bez1,bez2]);
 var dom = DOMAIN([[0,1],[0,1]])([30,30]);
 var exWingImage = T([2])([10])(MAP(exWing)(dom));
 
-var exWingImage2 = T([0,1,2])([1,-3,0])(exWingImage);
+var exWingImage2 = T([0,1,2])([1,-2.8,0])(exWingImage);
 var exWingImage3 = T([0,1,2])([2,-6,0])(exWingImage);
 
 var exWingComplete = COLOR([90/255, 78/255, 67/255])(STRUCT([exWingImage, exWingImage2, exWingImage3]));
