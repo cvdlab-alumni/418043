@@ -1,3 +1,4 @@
+!function(exports){
 var points = [[10,0,0],[6,2,0],[4.2,5,0],[4,8,0],[5,11,0],[7,14,0],[9,16,0],[11,17,0],[12,18,0],[13,19,0],[12,20,0],[9,21,0],[6,23,0],[5,25,0],[5,28,0],[7,29,0],[9,29.5,0],[13,29.5,0],[17,29.5,0],[18,32,0],[21,30,0],[23,27,0],[23,22,0],[22,18,0],[20.5,12,0],[21,8,0],[22,4,0],[23,1,0],[21,0,0],[10,0,0]];
 var knots = [0,0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,28,28];
 var profileBody = NUBS(S0)(2)(knots)(points);
@@ -37,8 +38,6 @@ var baseProfile = NUBS(S0)(2)(knotsBase)(basePoints);
 var base = ROTATIONAL_SURFACE(baseProfile);
 var baseDis = R([1,2])([PI/2])(MAP(base)(basedom));
 var chessHorse = STRUCT([baseDis, finalHorse]);
-var whiteHorse = T([0])([20])(COLOR([1,1,0.99])(chessHorse));
-var blackHorse = COLOR([0,0,0])(chessHorse);
+var scmodel = T([0])([20])(COLOR([139/255,69/255,19/255,1])(chessHorse));
 
-DRAW(whiteHorse);
-DRAW(blackHorse);
+exports.scmodel = scmodel;}(this);
