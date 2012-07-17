@@ -1666,14 +1666,14 @@
 		streets4 = MAP(streets4)(domain2d);
 		garden.push(streets4);
 
-		var pointsGrass5 = [[16/23*xGarden1,0.01,-16/23*xGarden1],[11.5/23*xGarden1,0.01,-16/23*xGarden1],[7/23*xGarden1,0.01,-16/23*xGarden1]];
+		var pointsGrass5 = [[16/23*xGarden1,0.02,-16/23*xGarden1],[11.5/23*xGarden1,0.02,-16/23*xGarden1],[7/23*xGarden1,0.02,-16/23*xGarden1]];
 		var nubsGrass5 = NUBS(S0)(2)(makeKnots(pointsGrass5))(pointsGrass5);
 		var grass5 = BEZIER(S1)([nubsGrass5,profileStreets4]);
 		grass5 = MAP(grass5)(domain2d);
 		grass5 = COLOR([0/255, 153/255, 0/255])(grass5);
 		garden.push(grass5); 
 
-		var pointsGrass6 = [[14/23*xGarden1,0.01,-11/23*xGarden1],[11.5/23*xGarden1,0.1,-11/23*xGarden1],[9/23*xGarden1,0.01,-11/23*xGarden1]];
+		var pointsGrass6 = [[14/23*xGarden1,0.02,-11/23*xGarden1],[11.5/23*xGarden1,0.02,-11/23*xGarden1],[9/23*xGarden1,0.02,-11/23*xGarden1]];
 		var nubsGrass6 = NUBS(S0)(2)(makeKnots(pointsGrass6))(pointsGrass6);
 		var grass6 = BEZIER(S1)([nubsGrass6,profileStreets5]);
 		grass6 = MAP(grass6)(domain2d);
