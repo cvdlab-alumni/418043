@@ -47,7 +47,7 @@
 	//scales a list of points on x-coordinate by a scale
 	scalePoints = function(pointList, scale) {
 	    return pointList.map( function(pt) { 
-	  return [ pt[0] * scale, pt[1], pt[2]]e
+	  return [ pt[0] * scale, pt[1], pt[2]];
 	    });
 	};
 	//scales a list of points on all the coordinates by a scale
@@ -660,59 +660,59 @@
 		var profile = NUBS(S0)(2)(knots)(points);
 		var profile2 = NUBS(S0)(2)(knots)(points2);
 		var profile3 = NUBS(S0)(2)(knots)(points3);
-		var latoSuperiore1 = BEZIER(S1)([profile,profile2]);
-		var latoSuperiore2 = BEZIER(S1)([profile3,profile2]);
-		var curve = MAP(latoSuperiore1)(domain2d);
-		var curve2 = MAP(latoSuperiore2)(domain2d);
+		var sideSuperiore1 = BEZIER(S1)([profile,profile2]);
+		var sideSuperiore2 = BEZIER(S1)([profile3,profile2]);
+		var curve = MAP(sideSuperiore1)(domain2d);
+		var curve2 = MAP(sideSuperiore2)(domain2d);
 		cornice.push(curve);
 		cornice.push(curve2);
 
 		var backgroundPoint3 = points2[0];
 
-		var zLaterale = zGableBase - 0.3;
+		var zlateral = zGableBase - 0.3;
 		var roofPoint1 = points[points.length-1];
 		var roofPoint2 = points2[points2.length-1];
-		var roofPoint3 = [roofPoint2[0],roofPoint2[1],roofPoint2[2]+zLaterale];
+		var roofPoint3 = [roofPoint2[0],roofPoint2[1],roofPoint2[2]+zlateral];
 		var roof2Point1 = points3[points3.length-1];
 		
 
-		var pointsLato1 = [[points[0][0],points[0][1],points[0][2]+zLaterale],[points[points.length-1][0],points[points.length-1][1],points[points.length-1][2]+zLaterale]];
-		pointsLato1.push(pointsLato1[1]);
+		var pointsSide1 = [[points[0][0],points[0][1],points[0][2]+zlateral],[points[points.length-1][0],points[points.length-1][1],points[points.length-1][2]+zlateral]];
+		pointsSide1.push(pointsSide1[1]);
 
-		var roofPoint4 = pointsLato1[1];
+		var roofPoint4 = pointsSide1[1];
 
-		var depthiloLato1 = NUBS(S0)(2)([0,0,0,1,1,1])(pointsLato1);
-		var lato1 = BEZIER(S1)([depthiloLato1,profile]);
-		lato1 = MAP(lato1)(domain2d);
-		cornice.push(lato1);
+		var profileSide1 = NUBS(S0)(2)([0,0,0,1,1,1])(pointsSide1);
+		var side1 = BEZIER(S1)([profileSide1,profile]);
+		side1 = MAP(side1)(domain2d);
+		cornice.push(side1);
 		var backgroundPoint3 = points2[0];
-		var lowerSideP2 = pointsLato1[0];
+		var lowerSideP2 = pointsSide1[0];
 		var lowerSide = NUBS(S0)(2)([0,0,0,1,1,1])([lowerSideP2,lowerSideP1,lowerSideP1]);
 
-		var lateraleSopraP1 = [lowerSideP1[0]+0.4,lowerSideP1[1],lowerSideP1[2]];
-		var lateraleSopraP2 = [lowerSideP2[0]+0.4,lowerSideP2[1],lowerSideP2[2]];
-		var lateraleSopra = NUBS(S0)(2)([0,0,0,1,1,1])([lateraleSopraP2,lateraleSopraP2,lateraleSopraP1]); 
-		var laterale = BEZIER(S1)([lateraleSopra,lowerSide]);
-		laterale = MAP(laterale)(domain2d);
-		cornice.push(laterale);
+		var upperSideP1 = [lowerSideP1[0]+0.4,lowerSideP1[1],lowerSideP1[2]];
+		var upperSideP2 = [lowerSideP2[0]+0.4,lowerSideP2[1],lowerSideP2[2]];
+		var upperSide = NUBS(S0)(2)([0,0,0,1,1,1])([upperSideP2,upperSideP2,upperSideP1]); 
+		var lateral = BEZIER(S1)([upperSide,lowerSide]);
+		lateral = MAP(lateral)(domain2d);
+		cornice.push(lateral);
 
-		var pointsLato1 = [[points3[0][0],points3[0][1],points3[0][2]+zLaterale],[points3[points3.length-1][0],points3[points3.length-1][1],points3[points3.length-1][2]+zLaterale]];
-		pointsLato1.push(pointsLato1[1]);
-		var roof2Point4 = pointsLato1[1];
-		var depthiloLato1 = NUBS(S0)(2)([0,0,0,1,1,1])(pointsLato1);
-		var lato1 = BEZIER(S1)([depthiloLato1,profile3]);
-		lato1 = MAP(lato1)(domain2d);
-		cornice.push(lato1);
+		var pointsSide1 = [[points3[0][0],points3[0][1],points3[0][2]+zlateral],[points3[points3.length-1][0],points3[points3.length-1][1],points3[points3.length-1][2]+zlateral]];
+		pointsSide1.push(pointsSide1[1]);
+		var roof2Point4 = pointsSide1[1];
+		var profileSide1 = NUBS(S0)(2)([0,0,0,1,1,1])(pointsSide1);
+		var side1 = BEZIER(S1)([profileSide1,profile3]);
+		side1 = MAP(side1)(domain2d);
+		cornice.push(side1);
 
-		var lowerSideP2L = pointsLato1[0];
+		var lowerSideP2L = pointsSide1[0];
 		var lowerSide = NUBS(S0)(2)([0,0,0,1,1,1])([lowerSideP2L,lowerSideP1L,lowerSideP1L]);
 
-		var lateraleSopraP1 = [lowerSideP1L[0]-0.4,lowerSideP1L[1],lowerSideP1L[2]];
-		var lateraleSopraP2 = [lowerSideP2L[0]-0.4,lowerSideP2L[1],lowerSideP2L[2]];
-		var lateraleSopra = NUBS(S0)(2)([0,0,0,1,1,1])([lateraleSopraP2,lateraleSopraP2,lateraleSopraP1]); 
-		var laterale = BEZIER(S1)([lateraleSopra,lowerSide]);
-		laterale = MAP(laterale)(domain2d);
-		cornice.push(laterale);
+		var upperSideP1 = [lowerSideP1L[0]-0.4,lowerSideP1L[1],lowerSideP1L[2]];
+		var upperSideP2 = [lowerSideP2L[0]-0.4,lowerSideP2L[1],lowerSideP2L[2]];
+		var upperSide = NUBS(S0)(2)([0,0,0,1,1,1])([upperSideP2,upperSideP2,upperSideP1]); 
+		var lateral = BEZIER(S1)([upperSide,lowerSide]);
+		lateral = MAP(lateral)(domain2d);
+		cornice.push(lateral);
 
 		cornice = STRUCT(cornice);
 		cornice = T([0,1,2])([-0.13,0.75,-0.1])(cornice);
@@ -727,7 +727,7 @@
 		var space = (xGableBase- 0.45 - xCube*nCubes)/(nCubes-1);
 		var drops = CUBOID([xCube,yCube,zCube]);
 		var t = T([0])([space+xCube]);
-		var drops = STRUCT(REPLICA(nCubes)([Cube,t]));
+		var drops = STRUCT(REPLICA(nCubes)([cube,t]));
 		drops = T([0,1,2])([0.15+0.06,8.08-7.465,3.44-3.35])(drops);
 		gable.push(drops);
 
@@ -742,7 +742,7 @@
 		var zCube = 0.1;
 		var nCubes = 15;
 		var cube = CUBOID([xCube,yCube,zCube]);
-		cube = T([0,1,2])([xBaseTriangle/2-0.21,hTriangle+8.1,3.42])(Cube);
+		cube = T([0,1,2])([xBaseTriangle/2-0.21,hTriangle+8.1,3.42])(cube);
 		var space = (ipotenusa + 1 - xCube*nCubes)/(nCubes-1);
 		var tx = space*SIN(alpha-PI/24);
 		var ty = space*COS(alpha-PI/24);
@@ -761,7 +761,7 @@
 		var space = (zGableBase- 0.27 - xCube*nCubes)/(nCubes-1);
 
 		var cube = CUBOID([xCube,yCube,zCube]);
-		cube = T([0,1,2])([0.15+0.06-xCube-0.02,8.08-7.465,3.42-3.35+zCube+0.05])(Cube);
+		cube = T([0,1,2])([0.15+0.06-xCube-0.02,8.08-7.465,3.42-3.35+zCube+0.05])(cube);
 		var tz = T([2])([space+zCube]);
 		var lateralDrops1 = STRUCT(REPLICA(nCubes)([cube,tz]));
 		gable.push(lateralDrops1);
@@ -803,13 +803,13 @@
 		var ornSurface = BEZIER(S1)([fakeProfile,ornProfile]);
 		var ornPoints2 = translatePoints(ornPoints,2,0.2);
 		var ornProfile2 = NUBS(S0)(2)(makeKnots(ornPoints2))(ornPoints2);
-		var latOrnSurface = BEZIER(S1)([ornProfile,ornProfile2]);
+		var sidernSurface = BEZIER(S1)([ornProfile,ornProfile2]);
 		var ornament3 = [];
 		ornSurface = MAP(ornSurface)(domain2d);
 		ornament3.push(ornSurface);
 
-		latOrnSurface = MAP(latOrnSurface)(domain2d);
-		ornament3.push(latOrnSurface);
+		sidernSurface = MAP(sidernSurface)(domain2d);
+		ornament3.push(sidernSurface);
 		ornament3 = STRUCT(ornament3);
 		ornament3 = T([0,1,2])([4.25,1.8,0.08])(ornament3);
 		gable.push(ornament3);
@@ -964,12 +964,12 @@
 		points2 = translatePoints(points2,0,xBaseTriangle);
 		points2 = scalePointsY(points2,1.5);
 		var knots = makeKnots(points);
-		var Profile = NUBS(S0)(2)(knots)(points);
-		var Profile2 = NUBS(S0)(2)(knots)(points2);
+		var profile = NUBS(S0)(2)(knots)(points);
+		var profile2 = NUBS(S0)(2)(knots)(points2);
 		var lowerSide = BEZIER(S1)([profile,profile2]);
 
-		var LatDownP1 = points[0];
-		var LatDownP1L = points2[0];
+		var sideDownP1 = points[0];
+		var sideDownP1L = points2[0];
 
 		var curve = MAP(lowerSide)(domain2d);
 		frame.push(curve);
@@ -1027,7 +1027,7 @@
 		var profile = NUBS(S0)(2)(knots)(points);
 
 		var depthOrnament = 0.3;
-		var ornamentwindow1 = CYLINDRICAL_SURFACE(Profile)([depthOrnament,0,0]);
+		var ornamentwindow1 = CYLINDRICAL_SURFACE(profile)([depthOrnament,0,0]);
 		ornamentwindow1 = MAP(ornamentwindow1)(domain2d);
 		ornament.push(ornamentwindow1);
 		var pointsfilling = [points[0],points[0],points[points.length-1]];
@@ -1618,7 +1618,7 @@
 		var chimney2 = T([0])([5.5])(chimney);
 		var chimney3 = T([2])([15.35])(chimney);
 		var chimney4 = T([2])([15.35])(chimney2);
-		var roofd = STRUCT([roof,dome,chimney,chimney2,chimney3,chimney4]);
+		var roof = STRUCT([roof,dome,chimney,chimney2,chimney3,chimney4]);
 		roof = T([0,1,2])([-3.8,11.17,6.7])(roof);
 		return roof;
 	}
@@ -1666,14 +1666,14 @@
 		streets4 = MAP(streets4)(domain2d);
 		garden.push(streets4);
 
-		var pointsGrass5 = [[16/23*xGarden1,0,-16/23*xGarden1],[11.5/23*xGarden1,0,-16/23*xGarden1],[7/23*xGarden1,0,-16/23*xGarden1]];
+		var pointsGrass5 = [[16/23*xGarden1,0.01,-16/23*xGarden1],[11.5/23*xGarden1,0.01,-16/23*xGarden1],[7/23*xGarden1,0.01,-16/23*xGarden1]];
 		var nubsGrass5 = NUBS(S0)(2)(makeKnots(pointsGrass5))(pointsGrass5);
 		var grass5 = BEZIER(S1)([nubsGrass5,profileStreets4]);
 		grass5 = MAP(grass5)(domain2d);
 		grass5 = COLOR([0/255, 153/255, 0/255])(grass5);
 		garden.push(grass5); 
 
-		var pointsGrass6 = [[14/23*xGarden1,0,-11/23*xGarden1],[11.5/23*xGarden1,0,-11/23*xGarden1],[9/23*xGarden1,0,-11/23*xGarden1]];
+		var pointsGrass6 = [[14/23*xGarden1,0.01,-11/23*xGarden1],[11.5/23*xGarden1,0.1,-11/23*xGarden1],[9/23*xGarden1,0.01,-11/23*xGarden1]];
 		var nubsGrass6 = NUBS(S0)(2)(makeKnots(pointsGrass6))(pointsGrass6);
 		var grass6 = BEZIER(S1)([nubsGrass6,profileStreets5]);
 		grass6 = MAP(grass6)(domain2d);
