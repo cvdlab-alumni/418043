@@ -1485,7 +1485,7 @@
 
 	//builds the roof, a part of the finalRoof
 	var buildRoof1 = function(){
-		var lRoof = 16.06;
+		var lRoof = 16.05;
 		var hRoof = 4;
 		var bRoofPoints = [[0,0,0],[0,0,0],[lRoof,0,0],[lRoof,0,0],[lRoof,0,lRoof],[lRoof,0,lRoof],[0,0,lRoof],[0,0,lRoof],[0,0,0],[0,0,0]];
 		var bRoofdepth = NUBS(S0)(1)([0,0,1,2,3,4,5,6,7,10,11,11])(bRoofPoints);
